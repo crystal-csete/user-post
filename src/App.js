@@ -1,56 +1,47 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import './App.css';
 
+import { Navbar } from "./miniApp/Navbar";
+
+import { PostsList } from "./features/posts/PostsList";
+import { AddPostForm } from "./features/posts/AddPostForm";
+import { SinglePostPage } from "./features/posts/SinglePostPage";
+import { EditPostForm } from "./features/posts/EditPostForm";
+import { UsersList } from "./features/users/UsersList";
+import { UserPage } from "./features/users/UserPage";
+import { NotificationsList } from "./features/notifications/NotificationsList";
+
 function App() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.text();
-      setDate(newDate);
-    }
-    getDate();
-  }, []);
   return (
-    <main>
-      <h1>Create React App + Go API</h1>
-      <h2>
-        Deployed with{' '}
-        <a
-          href="https://vercel.com/docs"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Vercel
-        </a>
-        !
-      </h2>
-      <p>
-        <a
-          href="https://github.com/vercel/vercel/tree/master/examples/create-react-app"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          This project
-        </a>{' '}
-        was bootstrapped with{' '}
-        <a href="https://facebook.github.io/create-react-app/">
-          Create React App
-        </a>{' '}
-        and contains three directories, <code>/public</code> for static assets,{' '}
-        <code>/src</code> for components and content, and <code>/api</code>{' '}
-        which contains a serverless <a href="https://golang.org/">Go</a>{' '}
-        function. See{' '}
-        <a href="/api/date">
-          <code>api/date</code> for the Date API with Go
-        </a>
-        .
-      </p>
-      <br />
-      <h2>The date according to Go is:</h2>
-      <p>{date ? date : 'Loading date...'}</p>
-    </main>
+    <Router>
+      <Navbar />
+      <div className="app">
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <AddPostForm />
+                <PostsList />
+              </React.Fragment>
+            )}
+          />
+          <Route exact path="/posts/:postId" component={SinglePostPage} />
+          <Route exact path="/editPost/:postId" component={EditPostForm} />
+          <Route exact path="/users" component={UsersList} />
+          <Route exact path="/users/:userId" component={UserPage} />
+          <Route exact path="/notifications" component={NotificationsList} />
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
