@@ -49,7 +49,7 @@ export const AddPostForm = () => {
   return (
     <section>
       <h2>Add a new Post</h2>
-      <form>
+      <form className="form-container">
         <label htmlFor="postTitle">Post title:</label>
         <input
           type="text"
@@ -60,7 +60,7 @@ export const AddPostForm = () => {
         />
         <label htmlFor="postAuthor">Author:</label>
         <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-          <option value=""></option>
+          <option className="option" value=""></option>
           {usersOptions}
         </select>
         <label htmlFor="postContent">Content:</label>
@@ -70,7 +70,7 @@ export const AddPostForm = () => {
           value={content}
           onChange={onContentChanged}
         />
-        <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
+        <button className="save-post" type="button" onClick={onSavePostClicked} disabled={!canSave}>
           Save Post
         </button>
       </form>
