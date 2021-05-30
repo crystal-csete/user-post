@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -5,26 +7,24 @@ import { Link } from "react-router-dom";
 import { PostAuthor } from "./PostAuthor";
 import { TimeAgo } from "./TimeAgo";
 import { ReactionButtons } from "./ReactionButtons";
-import {
-  fetchPosts,
-  selectPostById,
-  selectPostIds,
-} from "./postsSlice";
+import { fetchPosts, selectPostById, selectPostIds } from "./postsSlice";
 
 let PostExcerpt = ({ postId }) => {
   const post = useSelector((state) => selectPostById(state, postId));
 
   return (
-    <article className="post-excerpt" key={post.id}>
+    <article className='postList__container' key={post.id}>
       <h3>{post.title}</h3>
       <div>
         <PostAuthor userId={post.user} />
         <TimeAgo timestamp={post.date} />
       </div>
-      <p className="post-content">{post.content.substring(0, 100)}</p>
+      <p className='postList__content'>{post.content.substring(0, 100)}</p>
 
       <ReactionButtons post={post} />
-      <Link to={`/posts/${post.id}`} className="button muted-button">
+      <Link
+        to={`/posts/${post.id}`}
+        className='postList__view__btn reaction__muted___btn'>
         View Post
       </Link>
     </article>
@@ -47,7 +47,7 @@ export const PostsList = () => {
   let content;
 
   if (postStatus === "loading") {
-    content = <div className="loader">Loading...</div>;
+    content = <div className='postList__loader'>Loading...</div>;
   } else if (postStatus === "succeeded") {
     content = orderedPostIds.map((postId) => (
       <PostExcerpt key={postId} postId={postId} />
@@ -57,7 +57,7 @@ export const PostsList = () => {
   }
 
   return (
-    <section className="posts-list">
+    <section className='postList__list'>
       <h2>Posts</h2>
       {content}
     </section>

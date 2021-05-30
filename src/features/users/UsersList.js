@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -13,7 +15,7 @@ export const UsersList = () => {
   ));
 
   return (
-    <section>
+    <section className='userList__container'>
       <h2>Users</h2>
 
       <ul>{renderedUsers}</ul>

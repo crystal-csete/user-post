@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -19,26 +21,26 @@ export const Navbar = () => {
 
   if (numUnreadNotifications > 0) {
     unreadNotificationsBadge = (
-      <span className="badge">{numUnreadNotifications}</span>
+      <span className='badge'>{numUnreadNotifications}</span>
     );
   }
 
   return (
     <nav>
       <section>
-        <h1>Post example</h1>
-
-        <div className="navContent">
-          <div className="navLinks">
-            <Link to="/">Posts</Link>
-            <Link to="/users">Users</Link>
-            <Link to="/notifications">
+        <div className='nav__container'>
+          <div className='nav__links'>
+            <Link to='/'>Posts</Link>
+            <Link to='/users'>Users</Link>
+            <Link to='/notifications'>
               Notifications {unreadNotificationsBadge}
             </Link>
+            <button
+              className='nav__btn__refresh'
+              onClick={fetchNewNotifications}>
+              Refresh Notifications
+            </button>
           </div>
-          <button className="button" onClick={fetchNewNotifications}>
-            Refresh Notifications
-          </button>
         </div>
       </section>
     </nav>

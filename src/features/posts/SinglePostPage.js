@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -22,17 +24,19 @@ export const SinglePostPage = ({ match }) => {
 
   return (
     <section>
-      <article className="post">
+      <article className='singlePost__post'>
         <h2>{post.title}</h2>
         <div>
           <PostAuthor userId={post.user} />
           <TimeAgo timestamp={post.date} />
         </div>
-        <p className="post-content">{post.content}</p>
-        <ReactionButtons post={post} />
-        <Link to={`/editPost/${post.id}`} className="button">
-          Edit post
-        </Link>
+        <div>
+          <p className='postList__content'>{post.content}</p>
+          <ReactionButtons post={post} />
+          <Link to={`/editPost/${post.id}`} className='singlePost__btn'>
+            Edit post
+          </Link>
+        </div>
       </article>
     </section>
   );

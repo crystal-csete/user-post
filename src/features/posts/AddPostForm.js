@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
@@ -47,33 +49,39 @@ export const AddPostForm = () => {
   ));
 
   return (
-    <section>
-      <h2>Add a new Post</h2>
-      <form className="form-container">
-        <label htmlFor="postTitle">Post title:</label>
-        <input
-          type="text"
-          id="postTitle"
-          name="postTitle"
-          value={title}
-          onChange={onTitleChanged}
-        />
-        <label htmlFor="postAuthor">Author:</label>
-        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-          <option className="option" value=""></option>
-          {usersOptions}
-        </select>
-        <label htmlFor="postContent">Content:</label>
-        <textarea
-          id="postContent"
-          name="postContent"
-          value={content}
-          onChange={onContentChanged}
-        />
-        <button className="save-post" type="button" onClick={onSavePostClicked} disabled={!canSave}>
-          Save Post
-        </button>
-      </form>
-    </section>
+    <div className='addPostForm__container'>
+      <section>
+        <h2>Add a new Post</h2>
+        <form className='addPostForm__form'>
+          <label htmlFor='postTitle'>Post title:</label>
+          <input
+            type='text'
+            id='postTitle'
+            name='postTitle'
+            value={title}
+            onChange={onTitleChanged}
+          />
+          <label htmlFor='postAuthor'>Author:</label>
+          <select id='postAuthor' value={userId} onChange={onAuthorChanged}>
+            <option value=''></option>
+            {usersOptions}
+          </select>
+          <label htmlFor='postContent'>Content:</label>
+          <textarea
+            id='postContent'
+            name='postContent'
+            value={content}
+            onChange={onContentChanged}
+          />
+          <button
+            className='addPostForm__btn'
+            type='button'
+            onClick={onSavePostClicked}
+            disabled={!canSave}>
+            Save Post
+          </button>
+        </form>
+      </section>
+    </div>
   );
 };

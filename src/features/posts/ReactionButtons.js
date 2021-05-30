@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { useDispatch } from "react-redux";
 import { reactionAdded } from "./postsSlice";
@@ -17,12 +19,11 @@ export const ReactionButtons = ({ post }) => {
     return (
       <button
         key={name}
-        type="button"
-        className="muted-button reaction-button"
+        type='button'
+        className='reaction__muted___btn reaction__btn'
         onClick={() =>
           dispatch(reactionAdded({ postId: post.id, reaction: name }))
-        }
-      >
+        }>
         {emoji} {post.reactions[name]}
       </button>
     );
